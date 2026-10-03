@@ -26,7 +26,10 @@ public class PlayerActions : MonoBehaviour
 
     [field: Space]
     [field: Header("Hands")]
+    public float ThrowForce = 0;
     [SerializeField] private Transform heldItem;
+    private bool _throwItem = false;
+    //private bool _interactTrigger = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,6 +43,18 @@ public class PlayerActions : MonoBehaviour
     {
         HandleMovement();
         HandleCamMovement();
+        if (_throwItem)
+        {
+            ThrowForce += 0.1f;
+            if (ThrowForce > 20)
+            {
+                ThrowForce = 20;
+            }
+        }
+        else
+        {
+            ThrowForce = 0;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -76,7 +91,8 @@ public class PlayerActions : MonoBehaviour
         if (heldItem != null)
         {
             heldItem.position = transform.GetChild(1).position;
-            heldItem.rotation = Quaternion.identity;
+            heldItem.rotation = _firstPersonCamera.transform.rotation;
+
             
         }
     }
@@ -95,17 +111,34 @@ public class PlayerActions : MonoBehaviour
         _firstPersonCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0, 0);
     }
 
+    private void ThrowItem()
+    {
+        if (heldItem != null)
+        {
+            var rb = heldItem.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.useGravity = true;
+                rb.AddForce(_firstPersonCamera.transform.forward * ThrowForce, ForceMode.Impulse);
+            }
+            heldItem.SetParent(null);
+            heldItem = null;
+        }
+    }
+
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (Time.time > triggerDelayTimer + 5)
+        if (Time.time > triggerDelayTimer + 0.1f )
         {
-            if (heldItem != null)
+            if (heldItem != null && _throwItem)
             {
-                heldItem.SetParent(null);
-                var rb = heldItem.GetComponent<Rigidbody>();
-                if (rb != null) rb.useGravity = true;
-                heldItem = null;
-                return;
+                ThrowItem();
+                _throwItem = false;
+            }
+            else if (heldItem != null && !_throwItem)
+            {
+                Debug.Log("Throw button pressed");
+                _throwItem = true;
             }
             else
             {
@@ -114,14 +147,15 @@ public class PlayerActions : MonoBehaviour
                 if (Physics.Raycast(_firstPersonCamera.transform.position, _firstPersonCamera.transform.forward, out hit))
                 {
                     Debug.Log("Raycast hit: " + hit.transform.name);
-                    if (hit.transform.CompareTag("Prop"))
+                    Debug.Log("Raycast distance: " + hit.distance);
+                    if (hit.transform.CompareTag("Prop") && hit.distance < 3)
                     {
                         Debug.Log("If statement successful");
-                        PickUpFunction(hit.transform );
+                        PickUpFunction(hit.transform);
                     }
                 }
-
             }
+            triggerDelayTimer = Time.time;
         }
        
         
