@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class Blender
 {
-    public List<Prop> PropsInBlender { get; private set; } = new List<Prop>();
+    public Queue<Prop> PropsInBlender { get; private set; } = new Queue<Prop>();
 
     private float _heatValue = 1f;
     public float HeatValue
@@ -28,6 +28,7 @@ public class Blender
 
     private float _heatIncrement = 0.1f;
     private float _speedIncrement = 0.1f;
+    private int _maxObjectColors = 4;
 
     public bool LidClosed { get; private set; }
     public bool IsOn { get; private set; }
@@ -39,7 +40,7 @@ public class Blender
     {
         if (LidClosed) { Debug.Log("Lid is closed, didn't add prop"); return; }
         
-        PropsInBlender.Add(prop);
+        PropsInBlender.Enqueue(prop);
 
         Debug.Log("Prop added to blender");
     }
@@ -84,6 +85,11 @@ public class Blender
     public Color CalculateOutputColor()
     {
         if (PropsInBlender.Count == 0) { return Color.white; }
+
+        if (PropsInBlender.Count >= _maxObjectColors)
+        {
+            PropsInBlender.Dequeue();
+        }
 
         List<Color> AllPropColors = new List<Color>();
         
