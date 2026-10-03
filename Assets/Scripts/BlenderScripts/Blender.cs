@@ -7,7 +7,7 @@ public class Blender
 {
     public List<Prop> PropsInBlender { get; private set; } = new List<Prop>();
 
-    private float _heatValue = 0.5f;
+    private float _heatValue = 1;
     public float HeatValue
     {
         get { return _heatValue; }
@@ -17,7 +17,7 @@ public class Blender
         }
     }
 
-    private float _speedValue = 0.5f;
+    private float _speedValue = 1;
     public float SpeedValue { 
         get { return _speedValue; } 
         private set
@@ -46,9 +46,14 @@ public class Blender
         Debug.Log("Prop added to blender");
     }
 
+    public void RemoveAllProps()
+    {
+        PropsInBlender.Clear();
+    }
+
     public void StartBlender()
     {
-        
+        IsOn = true;
     }
 
     public void ToggleBlender()
@@ -69,6 +74,7 @@ public class Blender
     {
         HeatValue += isWarmer ? _heatIncrement : -_heatIncrement;
     }
+
     public Color CalculateOutputColor()
     {
         List<Color> AllPropColors = new List<Color>();
@@ -96,15 +102,13 @@ public class Blender
 
         Color averagedColor = new Color(Mathf.Sqrt(r / AllPropColors.Count), Mathf.Sqrt(g / AllPropColors.Count), Mathf.Sqrt(b / AllPropColors.Count));
 
-        //adding 'speed' adjustment (edits saturation)
-        Color grayscale = new Color(averagedColor.grayscale, averagedColor.grayscale, averagedColor.grayscale);
-        Color saturatedColor = Color.LerpUnclamped(grayscale, averagedColor, 1.6f); //160% saturated
-        Debug.Log(
-            $"AveragedColor: {averagedColor}\n" +
-            $"Grayscale: {grayscale}\n" +
-            $"SaturatedColor: {saturatedColor}"
-            );
+        float H, S, V;
+        Color.RGBToHSV(averagedColor, out H, out S, out V);
+        H = Mathf.Clamp(H * SpeedValue, 0, 1); //speed value is between 0 and 2 (changing hue)
+        S = Mathf.Clamp(S * HeatValue, 0, 1); //heat value is between 0 and 2 (changing saturation)
 
-        return averagedColor;
+        Color finalColor = Color.HSVToRGB(H, S, V);
+
+        return finalColor;
     }
 }
