@@ -87,9 +87,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd155a911787374aaf76cee4517d2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prop
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Color>k__BackingField: {r: 1, g: 0.28433526, b: 0, a: 0}
   <PropSize>k__BackingField: 1
   <IsInBlender>k__BackingField: 0
+  <Material>k__BackingField: {fileID: -4535497818790160295, guid: 7a952b36190b7f347b077a066b74c716, type: 3}
 --- !u!54 &955230729325286319
 Rigidbody:
   m_ObjectHideFlags: 0

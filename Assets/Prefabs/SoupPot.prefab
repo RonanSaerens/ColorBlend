@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f88f9fd6454e85944afb7c3c9f6ac187, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -4973734387028869240, guid: f88f9fd6454e85944afb7c3c9f6ac187, type: 3}
+    - target: {fileID: -7511558181221131132, guid: f88f9fd6454e85944afb7c3c9f6ac187, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: -1302531454756473517, guid: f88f9fd6454e85944afb7c3c9f6ac187, type: 3}
     - target: {fileID: 919132149155446097, guid: f88f9fd6454e85944afb7c3c9f6ac187, type: 3}
       propertyPath: m_Name
       value: SoupPot
@@ -87,9 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd155a911787374aaf76cee4517d2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prop
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Color>k__BackingField: {r: 0.9622642, g: 0.54001683, b: 0.23148806, a: 0}
   <PropSize>k__BackingField: 1
   <IsInBlender>k__BackingField: 0
+  <Material>k__BackingField: {fileID: -1302531454756473517, guid: f88f9fd6454e85944afb7c3c9f6ac187, type: 3}
 --- !u!54 &6223713317309171789
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,6 +145,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -313231714017568083, guid: f88f9fd6454e85944afb7c3c9f6ac187, type: 3}

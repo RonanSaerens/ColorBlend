@@ -87,9 +87,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd155a911787374aaf76cee4517d2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prop
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Color>k__BackingField: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
   <PropSize>k__BackingField: 1
   <IsInBlender>k__BackingField: 0
+  <Material>k__BackingField: {fileID: -9043279998715876011, guid: 19c4a5bea1482a740817093b61c8ead4, type: 3}
 --- !u!54 &-6397931682883327210
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,6 +137,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7203688626665590847, guid: 19c4a5bea1482a740817093b61c8ead4, type: 3}

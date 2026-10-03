@@ -48,6 +48,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b81f810bed709434f9c086ed721f2456, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -7724548510823413098, guid: b81f810bed709434f9c086ed721f2456, type: 3}
+    - target: {fileID: -7511558181221131132, guid: b81f810bed709434f9c086ed721f2456, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: -6902394184677608042, guid: b81f810bed709434f9c086ed721f2456, type: 3}
+    - target: {fileID: -7511558181221131132, guid: b81f810bed709434f9c086ed721f2456, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5142780691864321204, guid: b81f810bed709434f9c086ed721f2456, type: 3}
     - target: {fileID: 919132149155446097, guid: b81f810bed709434f9c086ed721f2456, type: 3}
       propertyPath: m_Name
       value: Microwave
@@ -87,9 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd155a911787374aaf76cee4517d2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prop
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Color>k__BackingField: {r: 0.28773582, g: 0.9290376, b: 1, a: 0}
   <PropSize>k__BackingField: 1
   <IsInBlender>k__BackingField: 0
+  <Material>k__BackingField: {fileID: -6902394184677608042, guid: b81f810bed709434f9c086ed721f2456, type: 3}
 --- !u!54 &7717006722965649853
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,6 +149,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7968470612172854309, guid: b81f810bed709434f9c086ed721f2456, type: 3}
