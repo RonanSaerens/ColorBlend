@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class PlayerActions : MonoBehaviour
     private float triggerDelayTimer = 0;
 
     [field: Space]
+    [field: Header("UI")]
+    [SerializeField] private UIDocument UIDoc;
+
+    [field: Space]
     [field: Header("Hands")]
     public float ThrowForce = 0;
     [SerializeField] private Transform heldItem;
@@ -35,7 +40,7 @@ public class PlayerActions : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked; 
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked; 
     }
 
     // Update is called once per frame
@@ -45,7 +50,7 @@ public class PlayerActions : MonoBehaviour
         HandleCamMovement();
         if (_throwItem)
         {
-            ThrowForce += 0.1f;
+            ThrowForce += 0.2f;
             if (ThrowForce > 20)
             {
                 ThrowForce = 20;
@@ -55,6 +60,11 @@ public class PlayerActions : MonoBehaviour
         {
             ThrowForce = 0;
         }
+        UIDoc.rootVisualElement.Q<Label>("ForceLabel").text = "Force: " + (int) ThrowForce;
+
+        float ratio = ThrowForce / 20f;
+        float percent = Mathf.Lerp(0, 100, ratio);
+        UIDoc.rootVisualElement.Q<VisualElement>("ForceBar").style.width = Length.Percent(percent);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -128,7 +138,8 @@ public class PlayerActions : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (Time.time > triggerDelayTimer + 0.1f )
+        
+        if (Time.time > triggerDelayTimer + 0.3f )
         {
             if (heldItem != null && _throwItem)
             {

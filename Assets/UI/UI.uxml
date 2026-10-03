@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; -unity-background-image-tint-color: rgb(255, 0, 0); background-color: rgba(255, 0, 0, 0); background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-7384953405098038083&amp;guid=d342ff946384d2f4789aa779b6380fbb&amp;type=3#Remove&quot;); background-size: 2% 3%;">
+        <ui:VisualElement name="Force" style="flex-grow: 1; width: 96px; height: 95%;">
+            <ui:Label text="0&#10;" name="ForceLabel"/>
+            <ui:VisualElement name="VisualElement" style="flex-grow: 1; height: 58px; flex-basis: 0%; flex-direction: column; min-height: auto; min-width: auto; max-height: 41px; border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                <ui:VisualElement name="ForceBar" style="flex-grow: 1; background-color: rgba(255, 0, 0, 0.588);"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
