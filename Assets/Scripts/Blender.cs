@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Blender : MonoBehaviour
@@ -11,6 +13,8 @@ public class Blender : MonoBehaviour
     {
         
     }
+
+    public List<Prop> PropsInBlender { get; private set; } = new List<Prop>();
 
     public void AddToBlender()
     {

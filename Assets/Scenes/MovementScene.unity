@@ -669,6 +669,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PropObject
       objectReference: {fileID: 0}
+    - target: {fileID: 2552613270519498354, guid: db066dade45cf77479887d174cc21658, type: 3}
+      propertyPath: m_TagString
+      value: Prop
+      objectReference: {fileID: 0}
     - target: {fileID: 8439298012062433519, guid: db066dade45cf77479887d174cc21658, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.30478
