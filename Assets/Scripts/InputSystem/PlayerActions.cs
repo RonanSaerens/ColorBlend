@@ -42,6 +42,8 @@ public class PlayerActions : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         UnityEngine.Cursor.lockState = CursorLockMode.Locked; 
+
+        
     }
 
     // Update is called once per frame
@@ -106,7 +108,7 @@ public class PlayerActions : MonoBehaviour
 
 
         }
-        float verticalSpeed = Time.fixedDeltaTime * Physics.gravity.y;
+        float verticalSpeed = Time.fixedDeltaTime * Physics.gravity.y * 10;
         controller.Move(verticalSpeed * Time.fixedDeltaTime * Vector3.up);
         if (controller.isGrounded)
         {
@@ -216,6 +218,16 @@ public class PlayerActions : MonoBehaviour
                 {
                     Singleton<Blender>.Instance.IncrementHeat(false);
                     Debug.Log($"Heat lowered to {Singleton<Blender>.Instance.HeatValue}");
+                }
+                else if (hit.transform.CompareTag("Tap") && hit.distance < 3)
+                {
+                    Singleton<Blender>.Instance.ToggleTap();
+                    Debug.Log($"Tap toggled to {Singleton<Blender>.Instance.TapOn}");
+                }
+                else if (hit.transform.CompareTag("PowerButton") && hit.distance < 3)
+                {
+                    Singleton<Blender>.Instance.ToggleBlender(!Singleton<Blender>.Instance.IsOn);
+                    Debug.Log($"Toggled blender to {Singleton<Blender>.Instance.IsOn}");
                 }
             }
 
