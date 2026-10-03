@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class BlenderPropHitbox : MonoBehaviour
 {
-
+    [SerializeField] private Material _mat;
     void Start()
     {
-        
+        _mat.SetColor("_Verfkluer", Color.white);
     }
 
     void Update()
@@ -27,7 +27,7 @@ public class BlenderPropHitbox : MonoBehaviour
         if (!prop.IsInBlender) 
         {
             Singleton<Blender>.Instance.AddPropToBlender(prop);
-            GetComponent<Renderer>().material.SetColor("Verfkluer", Singleton<Blender>.Instance.CalculateOutputColor());
+            _mat.SetColor("_Verfkluer", Singleton<Blender>.Instance.CalculateOutputColor());
         }
         else { Debug.Log("Prop is already in blender."); }
     }
