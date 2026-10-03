@@ -125,7 +125,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _VerfAmount: -0.94
+    - _VerfAmount: 2.28
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
@@ -134,6 +134,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Verfkluer: {r: 1, g: 1, b: 1, a: 1}
+    - _Verfkluer: {r: 0.3773585, g: 0.12716971, b: 0.069419734, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
