@@ -48,7 +48,7 @@ public class Blender
 
     public void StartBlender()
     {
-        
+        IsOn = true;
     }
 
     public void ToggleBlender()
