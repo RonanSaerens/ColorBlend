@@ -15,7 +15,7 @@ public class PlayerActions : MonoBehaviour
     [field: Space]
     [field: Header("Rotation")]
     [field: SerializeField] public bool RotationEnabled { get; set; } = true;
-    [SerializeField, Range(0.01f, 1)] private float _rotationSpeed = 0.1f;
+    [SerializeField, Range(0.01f, 2)] private float _rotationSpeed = 0.1f;
     [SerializeField] private Vector2 _yLimit = new Vector2(-40f, 80); //the top (but negative) & the bottom (but positive)
     private Vector2 camMoveInput;
 
