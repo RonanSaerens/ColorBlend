@@ -12,6 +12,7 @@ public class BlenderObject : MonoBehaviour
     [SerializeField] private GameObject _colorExtract;
     [SerializeField] private GameObject _rotor;
     [SerializeField] private GameObject _lidAnchor;
+    [SerializeField] private GameObject _tap;
 
     private int _rotorSpeed = 900;
     private float _lidSpeed = 180f;
@@ -55,6 +56,12 @@ public class BlenderObject : MonoBehaviour
         {
             Quaternion targetLidRotation = Quaternion.Euler(0f, -150f, 0f);
             _lidAnchor.transform.localRotation = Quaternion.RotateTowards(_lidAnchor.transform.localRotation, targetLidRotation, Time.deltaTime * _lidSpeed);
+        }
+
+        if (_blender.TapOn)
+        {
+            Quaternion targetTapRotation = Quaternion.Euler(0f, 90f, 0f);
+            _lidAnchor.transform.localRotation = Quaternion.RotateTowards(_lidAnchor.transform.localRotation, targetTapRotation, Time.deltaTime * _lidSpeed);
         }
     }
 }

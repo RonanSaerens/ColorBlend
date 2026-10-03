@@ -11,6 +11,8 @@ public class Prop : MonoBehaviour
     void Start()
     {
         if (!Material) { return; }
-        Material.color = Color;
+        MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
+        propertyBlock.SetColor("color", Color);
+        GetComponent<Renderer>().SetPropertyBlock(propertyBlock);
     }
 }
