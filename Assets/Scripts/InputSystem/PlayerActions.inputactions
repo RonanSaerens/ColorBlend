@@ -27,9 +27,19 @@
                     "priority": 0
                 },
                 {
-                    "name": "interact",
+                    "name": "interact Left",
                     "type": "Button",
                     "id": "cf322e13-fc38-41ea-b815-be6ef9cc5b47",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Interact Right",
+                    "type": "Button",
+                    "id": "ebb7d4b9-8368-47ee-933f-f2ef14f468dd",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -188,7 +198,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "interact",
+                    "action": "interact Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -199,18 +209,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "interact",
+                    "action": "interact Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "578245af-5bf5-449f-957f-f9c3d64c81b2",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "interact Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56b1e67a-7edf-493a-b139-8e678c327b89",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a24e971-25b8-4766-b82b-4cb8fbf8c31c",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "interact",
+                    "action": "Interact Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3e5898b3-4f7d-4779-9019-36789feb2980",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

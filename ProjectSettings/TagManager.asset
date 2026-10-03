@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Prop
+  - SpeedButton
+  - HeatButton
+  - Tap
+  - PowerButton
   layers:
   - Default
   - TransparentFX
