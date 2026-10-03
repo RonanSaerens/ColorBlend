@@ -28,6 +28,8 @@ public class BlenderPropHitbox : MonoBehaviour
         {
             Singleton<Blender>.Instance.AddPropToBlender(prop);
             _mat.SetColor("_Verfkluer", Singleton<Blender>.Instance.CalculateOutputColor());
+
+            prop.transform.gameObject.SetActive(false);
         }
         else { Debug.Log("Prop is already in blender."); }
     }
