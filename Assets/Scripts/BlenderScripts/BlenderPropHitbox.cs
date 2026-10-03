@@ -16,8 +16,6 @@ public class BlenderPropHitbox : MonoBehaviour
         
     }
 
-    
-
     private void OnTriggerEnter (Collider other)
     {
         if (!other.gameObject.CompareTag("Prop")){ Debug.Log("is not prop tagged"); return; }

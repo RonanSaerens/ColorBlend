@@ -5,7 +5,6 @@ using UnityEngine.Rendering;
 public class Blender : MonoBehaviour
 {
     public List<Prop> PropsInBlender { get; private set; } = new List<Prop>();
-    public List<Color> Colors { get; private set; } = new List<Color>();
 
     private float _heatValue = 0.5f;
     public float HeatValue
@@ -35,6 +34,8 @@ public class Blender : MonoBehaviour
 
     public void AddPropToBlender(Prop prop)
     {
+        if (LidClosed) { Debug.Log("Lid is closed, didn't add prop"); return; }
+        
         PropsInBlender.Add(prop);
 
         Debug.Log("Prop added to blender");
@@ -42,10 +43,7 @@ public class Blender : MonoBehaviour
 
     public void StartBlender()
     {
-        foreach (Prop prop in PropsInBlender) 
-        {
-            Colors.Add(prop.Color);
-        }
+        
     }
 
     public void ToggleBlender()
@@ -68,6 +66,13 @@ public class Blender : MonoBehaviour
     }
     public Color CalculateOutputColor()
     {
+        Color averageColor = new Color();
 
+        foreach (Prop prop in PropsInBlender)
+        {
+
+        }
+
+        return averageColor;
     }
 }
