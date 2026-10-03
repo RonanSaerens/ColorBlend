@@ -89,7 +89,7 @@ public class PlayerActions : MonoBehaviour
 
         camMoveInput = context.ReadValue<Vector2>();
     }
-    
+
     private void HandleMovement()
     {
         Vector3 direction = moveInput.normalized;
@@ -104,7 +104,13 @@ public class PlayerActions : MonoBehaviour
             heldItem.position = transform.GetChild(1).position;
             heldItem.rotation = _firstPersonCamera.transform.rotation;
 
-            
+
+        }
+        float verticalSpeed = Time.fixedDeltaTime * Physics.gravity.y;
+        controller.Move(verticalSpeed * Time.fixedDeltaTime * Vector3.up);
+        if (controller.isGrounded)
+        {
+            verticalSpeed = 0f;
         }
     }
     private void HandleCamMovement()
