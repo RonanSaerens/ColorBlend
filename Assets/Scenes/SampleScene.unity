@@ -11948,7 +11948,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1765259909}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
-        m_MethodName: OnInteract
+        m_MethodName: OnInteractLeft
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
