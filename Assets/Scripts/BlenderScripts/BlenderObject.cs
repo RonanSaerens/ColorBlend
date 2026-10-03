@@ -41,7 +41,7 @@ public class BlenderObject : MonoBehaviour
         {
             _blender.ToggleBlender(false);
 
-            Quaternion targetLidRotation = Quaternion.Euler(0f, -150f, 0f);
+            Quaternion targetLidRotation = Quaternion.Euler(0f, -100f, 0f);
             _lidAnchor.transform.localRotation = Quaternion.RotateTowards(_lidAnchor.transform.localRotation, targetLidRotation, Time.deltaTime * _lidSpeed);
         }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BlenderPropHitbox : MonoBehaviour
 {
+
     void Start()
     {
         
@@ -26,6 +27,7 @@ public class BlenderPropHitbox : MonoBehaviour
         if (!prop.IsInBlender) 
         {
             Singleton<Blender>.Instance.AddPropToBlender(prop);
+            GetComponent<Renderer>().material.SetColor("Verfkluer", Singleton<Blender>.Instance.CalculateOutputColor());
         }
         else { Debug.Log("Prop is already in blender."); }
     }
