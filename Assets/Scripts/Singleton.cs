@@ -1,18 +1,13 @@
-using UnityEngine;
-
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+namespace Singleton
 {
-    public static T Instance {  get; private set; }
+    using System;
 
-    protected virtual void Awake()
+    public sealed class Singleton<T> where T : class, new()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(Instance);
-        }
-        else
-        {
-            Instance = this as T;
-        }
+        private static readonly Lazy<T> _instance = new Lazy<T>(() => new T());
+
+        private Singleton() { }
+
+        public static T Instance { get { return _instance.Value; } }
     }
 }

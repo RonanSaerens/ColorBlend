@@ -1,11 +1,10 @@
 using NUnit.Framework;
+using Singleton;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BlenderPropHitbox : MonoBehaviour
 {
-    private Blender Blender { get; set; } = Singleton<Blender>.Instance;
-
     void Start()
     {
         
@@ -26,7 +25,7 @@ public class BlenderPropHitbox : MonoBehaviour
 
         if (!prop.IsInBlender) 
         {
-            Blender.AddPropToBlender(prop);
+            Singleton<Blender>.Instance.AddPropToBlender(prop);
         }
         else { Debug.Log("Prop is already in blender."); }
     }
