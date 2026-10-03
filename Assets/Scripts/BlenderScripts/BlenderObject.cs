@@ -7,8 +7,6 @@ public class BlenderObject : MonoBehaviour
 {
     private Blender _blender;
 
-    [SerializeField] private InputAction _inputAction;
-
     [SerializeField] private GameObject _colorExtract;
     [SerializeField] private GameObject _rotor;
     [SerializeField] private GameObject _lidAnchor;
@@ -16,16 +14,7 @@ public class BlenderObject : MonoBehaviour
 
     private int _rotorSpeed = 900;
     private float _lidSpeed = 180f;
-
-    private void OnEnable()
-    {
-        _inputAction.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _inputAction.Disable();
-    }
+    private float _tapSpeed = 180f;
 
     private void Awake()
     {
@@ -39,14 +28,10 @@ public class BlenderObject : MonoBehaviour
 
     private void Update()
     {
-        if (_inputAction.triggered) 
-        {
-            _blender.ToggleBlender();
-            _colorExtract.GetComponent<MeshRenderer>().material.color = Singleton<Blender>.Instance.CalculateOutputColor();
-        }
-
         if (_blender.IsOn)
         {
+            _blender.ToggleBlender(true);
+
             _rotor.transform.RotateAround(_rotor.transform.position, Vector3.up, Time.deltaTime * _rotorSpeed);
 
             Quaternion targetLidRotation = Quaternion.Euler(0f, 0f, 0f);
@@ -54,6 +39,8 @@ public class BlenderObject : MonoBehaviour
         }
         else 
         {
+            _blender.ToggleBlender(false);
+
             Quaternion targetLidRotation = Quaternion.Euler(0f, -150f, 0f);
             _lidAnchor.transform.localRotation = Quaternion.RotateTowards(_lidAnchor.transform.localRotation, targetLidRotation, Time.deltaTime * _lidSpeed);
         }
@@ -61,7 +48,18 @@ public class BlenderObject : MonoBehaviour
         if (_blender.TapOn)
         {
             Quaternion targetTapRotation = Quaternion.Euler(0f, 90f, 0f);
-            _lidAnchor.transform.localRotation = Quaternion.RotateTowards(_lidAnchor.transform.localRotation, targetTapRotation, Time.deltaTime * _lidSpeed);
+            _tap.transform.localRotation = Quaternion.RotateTowards(_tap.transform.localRotation, targetTapRotation, Time.deltaTime * _tapSpeed);
+        }
+        else
+        {
+            Quaternion targetTapRotation = Quaternion.Euler(0f, 0f, 0f);
+            _tap.transform.localRotation = Quaternion.RotateTowards(_tap.transform.localRotation, targetTapRotation, Time.deltaTime * _tapSpeed);
+        }
+
+        if (_blender.TapOn)
+        {
+            Color outputColor = Singleton<Blender>.Instance.CalculateOutputColor();
+            _colorExtract.GetComponent<MeshRenderer>().material.color = outputColor;
         }
     }
 }

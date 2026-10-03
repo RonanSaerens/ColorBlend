@@ -1,3 +1,4 @@
+using Singleton;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -142,10 +143,9 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    public void OnInteract(InputAction.CallbackContext context)
+    public void OnInteractLeft(InputAction.CallbackContext context)
     {
-        
-        if (Time.time > triggerDelayTimer + 0.3f )
+        if (Time.time > triggerDelayTimer + 0.3f)
         {
             if (heldItem != null && _throwItem)
             {
@@ -160,23 +160,64 @@ public class PlayerActions : MonoBehaviour
             else
             {
                 RaycastHit hit;
-                Debug.Log("Interact button pressed");
+                //Debug.Log("Interact button pressed");
                 if (Physics.Raycast(_firstPersonCamera.transform.position, _firstPersonCamera.transform.forward, out hit))
                 {
-                    Debug.Log("Raycast hit: " + hit.transform.name);
-                    Debug.Log("Raycast distance: " + hit.distance);
+                    //Debug.Log("Raycast hit: " + hit.transform.name);
+                    //Debug.Log("Raycast distance: " + hit.distance);
                     if (hit.transform.CompareTag("Prop") && hit.distance < 3)
                     {
-                        Debug.Log("If statement successful");
+                        //Debug.Log("If statement successful");
                         PickUpFunction(hit.transform);
+                    }
+                    else if (hit.transform.CompareTag("Tap") && hit.distance < 3)
+                    {
+                        Singleton<Blender>.Instance.ToggleTap();
+                        Debug.Log($"Tap toggled to {Singleton<Blender>.Instance.TapOn}");
+                    }
+                    else if (hit.transform.CompareTag("SpeedButton") && hit.distance < 3)
+                    {
+                        Singleton<Blender>.Instance.IncrementSpeed(true);
+                        Debug.Log($"Speed increased to {Singleton<Blender>.Instance.SpeedValue}");
+                    }
+                    else if (hit.transform.CompareTag("HeatButton") && hit.distance < 3)
+                    {
+                        Singleton<Blender>.Instance.IncrementHeat(true);
+                        Debug.Log($"Heat increased to {Singleton<Blender>.Instance.HeatValue}");
+                    }
+                    else if (hit.transform.CompareTag("PowerButton") && hit.distance < 3)
+                    {
+                        Singleton<Blender>.Instance.ToggleBlender(!Singleton<Blender>.Instance.IsOn);
+                        Debug.Log($"Toggled blender to {Singleton<Blender>.Instance.IsOn}");
                     }
                 }
             }
             triggerDelayTimer = Time.time;
         }
-       
-        
+
     }
+
+    public void OnInteractRight(InputAction.CallbackContext context)
+    {
+        RaycastHit hit;
+        //Debug.Log("Interact button pressed");
+        if (Physics.Raycast(_firstPersonCamera.transform.position, _firstPersonCamera.transform.forward, out hit))
+        {
+            //Debug.Log("Raycast hit: " + hit.transform.name);
+            //Debug.Log("Raycast distance: " + hit.distance);
+            if (hit.transform.CompareTag("SpeedButton") && hit.distance < 3)
+            {
+                Singleton<Blender>.Instance.IncrementSpeed(false);
+                Debug.Log($"Speed lowered to {Singleton<Blender>.Instance.SpeedValue}");
+            }
+            else if (hit.transform.CompareTag("HeatButton") && hit.distance < 3)
+            {
+                Singleton<Blender>.Instance.IncrementHeat(false);
+                Debug.Log($"Heat lowered to {Singleton<Blender>.Instance.HeatValue}");
+            }
+        }
+    }
+       
 
     public void PickUpFunction(Transform prop )
     {

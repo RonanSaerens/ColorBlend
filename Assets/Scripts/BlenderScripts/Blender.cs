@@ -13,7 +13,7 @@ public class Blender
         get { return _heatValue; }
         private set
         {
-            _heatValue = Mathf.Clamp01(_heatValue + _heatIncrement);
+            _heatValue = Mathf.Clamp(_heatValue + _heatIncrement, 0, 2);
         }
     }
 
@@ -22,7 +22,7 @@ public class Blender
         get { return _speedValue; } 
         private set
         {
-            _speedValue = Mathf.Clamp01(_speedValue + _speedIncrement);
+            _speedValue = Mathf.Clamp(_speedValue + _speedIncrement, 0, 2);
         } 
     }
 
@@ -51,9 +51,9 @@ public class Blender
         IsOn = true;
     }
 
-    public void ToggleBlender()
+    public void ToggleBlender(bool isOn)
     {
-        IsOn = !IsOn;
+        IsOn = isOn;
     }
 
     public void ToggleTap()
@@ -63,14 +63,16 @@ public class Blender
 
     public void IncrementSpeed(bool isFaster)
     {
-        SpeedValue += isFaster ? _speedIncrement : -_speedIncrement;
+        SpeedValue = isFaster ? _speedIncrement : -_speedIncrement;
     }
     public void IncrementHeat(bool isWarmer)
     {
-        HeatValue += isWarmer ? _heatIncrement : -_heatIncrement;
+        HeatValue = isWarmer ? _heatIncrement : -_heatIncrement;
     }
     public Color CalculateOutputColor()
     {
+        if (PropsInBlender.Count == 0) { return Color.white; }
+
         List<Color> AllPropColors = new List<Color>();
         
         //adding all colors to a color list, depending no the size I add the color of a prop multiple times
