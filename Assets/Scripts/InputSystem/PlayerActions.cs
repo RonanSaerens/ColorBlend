@@ -199,22 +199,27 @@ public class PlayerActions : MonoBehaviour
 
     public void OnInteractRight(InputAction.CallbackContext context)
     {
-        RaycastHit hit;
-        //Debug.Log("Interact button pressed");
-        if (Physics.Raycast(_firstPersonCamera.transform.position, _firstPersonCamera.transform.forward, out hit))
+        if (Time.time > triggerDelayTimer + 0.3f)
         {
-            //Debug.Log("Raycast hit: " + hit.transform.name);
-            //Debug.Log("Raycast distance: " + hit.distance);
-            if (hit.transform.CompareTag("SpeedButton") && hit.distance < 3)
+            RaycastHit hit;
+            //Debug.Log("Interact button pressed");
+            if (Physics.Raycast(_firstPersonCamera.transform.position, _firstPersonCamera.transform.forward, out hit))
             {
-                Singleton<Blender>.Instance.IncrementSpeed(false);
-                Debug.Log($"Speed lowered to {Singleton<Blender>.Instance.SpeedValue}");
+                //Debug.Log("Raycast hit: " + hit.transform.name);
+                //Debug.Log("Raycast distance: " + hit.distance);
+                if (hit.transform.CompareTag("SpeedButton") && hit.distance < 3)
+                {
+                    Singleton<Blender>.Instance.IncrementSpeed(false);
+                    Debug.Log($"Speed lowered to {Singleton<Blender>.Instance.SpeedValue}");
+                }
+                else if (hit.transform.CompareTag("HeatButton") && hit.distance < 3)
+                {
+                    Singleton<Blender>.Instance.IncrementHeat(false);
+                    Debug.Log($"Heat lowered to {Singleton<Blender>.Instance.HeatValue}");
+                }
             }
-            else if (hit.transform.CompareTag("HeatButton") && hit.distance < 3)
-            {
-                Singleton<Blender>.Instance.IncrementHeat(false);
-                Debug.Log($"Heat lowered to {Singleton<Blender>.Instance.HeatValue}");
-            }
+
+            triggerDelayTimer = Time.time;
         }
     }
        

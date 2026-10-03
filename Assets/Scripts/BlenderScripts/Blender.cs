@@ -7,29 +7,27 @@ public class Blender
 {
     public List<Prop> PropsInBlender { get; private set; } = new List<Prop>();
 
-    private float _heatValue = 0.5f;
+    private float _heatValue = 1f;
     public float HeatValue
     {
         get { return _heatValue; }
         private set
         {
-            _heatValue = Mathf.Clamp(_heatValue + _heatIncrement, 0, 2);
+            _heatValue = Mathf.Clamp(value, 0, 2);
         }
     }
 
-    private float _speedValue = 0.5f;
+    private float _speedValue = 1f;
     public float SpeedValue { 
         get { return _speedValue; } 
         private set
         {
-            _speedValue = Mathf.Clamp(_speedValue + _speedIncrement, 0, 2);
+            _speedValue = Mathf.Clamp(value, 0, 2);
         } 
     }
 
     private float _heatIncrement = 0.1f;
     private float _speedIncrement = 0.1f;
-
-    private float _blendingTime = 3f;
 
     public bool LidClosed { get; private set; }
     public bool IsOn { get; private set; }
@@ -63,11 +61,25 @@ public class Blender
 
     public void IncrementSpeed(bool isFaster)
     {
-        SpeedValue = isFaster ? _speedIncrement : -_speedIncrement;
+        if (isFaster)
+        {
+            SpeedValue += _speedIncrement;
+        }
+        else
+        {
+            SpeedValue -= _speedIncrement;
+        }
     }
     public void IncrementHeat(bool isWarmer)
     {
-        HeatValue = isWarmer ? _heatIncrement : -_heatIncrement;
+        if (isWarmer)
+        {
+            HeatValue += _heatIncrement;
+        }
+        else
+        {
+            HeatValue -= _heatIncrement;
+        }
     }
     public Color CalculateOutputColor()
     {
